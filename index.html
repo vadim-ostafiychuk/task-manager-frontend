@@ -19,67 +19,16 @@
         />
         <button onclick="addTask()">Add</button>
       </div>
+      
+      <div class="filters">
+        <button onclick="setFilter('all')">All</button>
+        <button onclick="setFilter('active')">Active</button>
+        <button onclick="setFilter('completed')">Completed</button>
+      </div>
 
       <div id="taskList"></div>
     </div>
 
-    <script>
-      let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-
-      function saveTasks() {
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-      }
-
-      function renderTasks() {
-        const list = document.getElementById("taskList");
-        list.innerHTML = "";
-
-        tasks.forEach((taskObj, index) => {
-          const task = document.createElement("div");
-          task.className = "task";
-
-          task.innerHTML = `
-      <input type="checkbox" ${taskObj.done ? "checked" : ""} 
-        onchange="toggleTask(${index})" />
-
-      <span style="${taskObj.done ? "text-decoration: line-through; opacity: 0.6;" : ""}">
-        ${taskObj.text}
-      </span>
-
-      <button onclick="removeTask(${index})">X</button>
-    `;
-
-          list.appendChild(task);
-        });
-      }
-
-      function addTask() {
-        const input = document.getElementById("taskInput");
-        const text = input.value;
-
-        if (!text) return;
-
-        tasks.push({ text, done: false });
-        saveTasks();
-        renderTasks();
-
-        input.value = "";
-      }
-
-      function removeTask(index) {
-        tasks.splice(index, 1);
-        saveTasks();
-        renderTasks();
-      }
-
-      function toggleTask(index) {
-        tasks[index].done = !tasks[index].done;
-        saveTasks();
-        renderTasks();
-      }
-
-      // при загрузці
-      renderTasks();
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
