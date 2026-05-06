@@ -67,3 +67,10 @@ button {
 .filters {
   margin-bottom: 20px;
 }
+
+.searchInput {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
